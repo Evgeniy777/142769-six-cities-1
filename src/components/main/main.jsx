@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const Main = () => {
+export const Main = (props) => {
+  const {names} = props;
   return (
     <div>
       <div style={{display: `none`}}>
@@ -130,7 +132,7 @@ export const Main = () => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                      <a href="#">${names[0]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -162,7 +164,7 @@ export const Main = () => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">${names[1]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -194,7 +196,7 @@ export const Main = () => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Canal View Prinsengracht</a>
+                      <a href="#">${names[2]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -229,7 +231,7 @@ export const Main = () => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Nice, cozy, warm big bed apartment</a>
+                      <a href="#">${names[3]}</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -261,7 +263,7 @@ export const Main = () => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">Wood and stone place</a>
+                      <a href="#">${names[1]}</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -277,4 +279,9 @@ export const Main = () => {
       </main>
     </div>
   );
+};
+
+
+Main.propTypes = {
+  names: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
