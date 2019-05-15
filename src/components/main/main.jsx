@@ -103,8 +103,8 @@ export const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {names.map(name => {
-                  return <article className="cities__place-card place-card">
+                {names.map((it, i) => {
+                  return <article className="cities__place-card place-card" key={i}>
                     <div className="place-card__mark">
                       <span>Premium</span>
                     </div>
@@ -133,11 +133,11 @@ export const Main = (props) => {
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a href="#">${name}</a>
+                        <a href="#">${it}</a>
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>
-                  </article>
+                  </article>;
                 })}
               </div>
             </section>
