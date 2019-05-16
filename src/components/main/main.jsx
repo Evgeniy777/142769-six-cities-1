@@ -133,7 +133,7 @@ export const Main = (props) => {
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a href="#">${it}</a>
+                        <a href="#">{it}</a>
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>
