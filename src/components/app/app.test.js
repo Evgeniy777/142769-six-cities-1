@@ -1,3 +1,7 @@
+import React from 'react';
+import renderer from 'react-test-renderer';
+import {App} from '../app/app.jsx';
+
 const places = [
   {
     name: `Beautiful & luxurious apartment at great location`,
@@ -50,13 +54,13 @@ const cities = [
   `Dusseldorf`
 ];
 
-const placeSorting = [
-  `Popular`,
-  `Price: low to high`,
-  `Price: high to low`,
-  `Top rated first`
-];
-
-const user = `Oliver.conner@gmail.com`;
-
-export {places, cities, user, placeSorting};
+describe(`App`, () => {
+  it(`App correctly renders`, () => {
+    const tree = renderer
+      .create(<App
+        places={places}
+        cities={cities}
+      />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
