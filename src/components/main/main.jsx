@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {PlaceCard} from '../place-card/place-card.jsx';
 import {Header} from '../header/header.jsx';
 import {PlaceSorting} from '../places-sorting/place-sorting.jsx';
+import {OffersList} from '../offers-list/offers-list.jsx';
 import {Tabs} from '../tabs/tabs.jsx';
 
-export const Main = (props) => {
-  const {places, cities, user, placeSorting} = props;
+export const Main = (props = {}) => {
+  const {offers = [], cities, user, placeSorting} = props;
   return (
     <div>
       <div style={{display: `none`}}>
@@ -33,14 +33,8 @@ export const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">312 places to stay in Amsterdam</b>
-
               <PlaceSorting placeSorting={placeSorting}/>
-
-              <div className="cities__places-list places__list tabs__content">
-                {places.map((it, i) => {
-                  return <PlaceCard place={it} key={i} />;
-                })}
-              </div>
+              <OffersList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -53,7 +47,7 @@ export const Main = (props) => {
 };
 
 Main.propTypes = {
-  places: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  offers: PropTypes.array.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   user: PropTypes.string.isRequired,
   placeSorting: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
