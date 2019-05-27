@@ -1,8 +1,9 @@
 import React from 'react';
 import {Main} from '../main/main.jsx';
-import {places, cities, user, placeSorting} from '../data';
+import {cities, user, placeSorting} from '../data';
+import {offers} from '../../mocks/offers';
 
 export const App = () => {
-  return <Main places={places} cities={cities} user={user} placeSorting={placeSorting}/>;
+  return <Main offers={offers} cities={cities} user={user} placeSorting={placeSorting}/>;
 };
 

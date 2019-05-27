@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Main} from '../main/main.jsx';
+import {OffersList} from '../offers-list/offers-list.jsx';
 
-describe(`Main`, () => {
-  it(`Main correctly renders`, () => {
+describe(`OffersList`, () => {
+  it(`OffersList correctly renders`, () => {
     const offers = [
       {
         name: `Beautiful & luxurious apartment at gr eautiful & luxurious apartmenteat location`,
@@ -30,31 +30,9 @@ describe(`Main`, () => {
         url: `img/apartment-02.jpg`
       }
     ];
-
-    const cities = [
-      `Paris`,
-      `Cologne`,
-      `Brussels`,
-      `Amsterdam`,
-      `Hamburg`,
-      `Dusseldorf`
-    ];
-
-    const placeSorting = [
-      `Popular`,
-      `Price: low to high`,
-      `Price: high to low`,
-      `Top rated first`
-    ];
-
-    const user = `conne.oliverr@gmail.com`;
-
     const tree = renderer
-      .create(<Main
+      .create(<OffersList
         offers={offers}
-        cities={cities}
-        placeSorting={placeSorting}
-        user={user}
       />).toJSON();
     expect(tree).toMatchSnapshot();
   });
