@@ -4,6 +4,7 @@ import {Header} from '../header/header.jsx';
 import {PlaceSorting} from '../places-sorting/place-sorting.jsx';
 import {OffersList} from '../offers-list/offers-list.jsx';
 import {Tabs} from '../tabs/tabs.jsx';
+import {PlaceMap} from '../place-map/place-map.jsx';
 
 export const Main = (props = {}) => {
   const {offers = [], cities, user, placeSorting} = props;
@@ -37,7 +38,7 @@ export const Main = (props = {}) => {
               <OffersList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <PlaceMap offers={offers} />
             </div>
           </div>
         </div>

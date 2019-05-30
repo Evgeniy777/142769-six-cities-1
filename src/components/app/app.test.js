@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from '../app/app.jsx';
 
-const places = [
+const offers = [
   {
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
@@ -58,7 +58,7 @@ describe(`App`, () => {
   it(`App correctly renders`, () => {
     const tree = renderer
       .create(<App
-        places={places}
+        offers={offers}
         cities={cities}
       />).toJSON();
     expect(tree).toMatchSnapshot();

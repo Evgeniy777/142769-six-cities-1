@@ -5,7 +5,8 @@ export const offers = [
     price: 120,
     premium: true,
     stars: 93,
-    url: `img/apartment-01.jpg`
+    url: `img/apartment-01.jpg`,
+    coordinates: [52.3909553943508, 4.85309666406198]
   },
   {
     name: `Wood and stone place`,
@@ -13,7 +14,8 @@ export const offers = [
     price: 80,
     premium: false,
     stars: 80,
-    url: `img/room.jpg`
+    url: `img/room.jpg`,
+    coordinates: [52.369553943508, 4.85309666406198]
   },
   {
     name: `Canal View Prinsengracht`,
@@ -21,7 +23,8 @@ export const offers = [
     price: 132,
     premium: false,
     stars: 80,
-    url: `img/apartment-02.jpg`
+    url: `img/apartment-02.jpg`,
+    coordinates: [52.3909553943508, 4.929309666406198]
   },
   {
     name: `Nice, cozy, warm big bed apartment`,
@@ -29,7 +32,8 @@ export const offers = [
     price: 180,
     premium: true,
     stars: 100,
-    url: `img/apartment-03.jpg`
+    url: `img/apartment-03.jpg`,
+    coordinates: [52.3809553943508, 4.939309666406198]
   },
   {
     name: `Wood and stone place`,
@@ -37,6 +41,7 @@ export const offers = [
     price: 80,
     premium: false,
     stars: 80,
-    url: `img/room.jpg`
+    url: `img/room.jpg`,
+    coordinates: [52.3809533943508, 4.939309666406198]
   }
 ];
