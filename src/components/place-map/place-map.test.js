@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {PlaceMap} from '../place-map/place-map.jsx';
+import PlaceMap from '../place-map/place-map.jsx';
 
 describe(`PlaceMap`, () => {
   it(`PlaceMap correctly renders`, () => {

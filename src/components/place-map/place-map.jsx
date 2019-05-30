@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import L from 'leaflet';
 
-export class PlaceMap extends PureComponent {
+class PlaceMap extends PureComponent {
   constructor(props = {}) {
     super(props);
     this.defaultCity = [52.38333, 4.9];
@@ -16,26 +16,28 @@ export class PlaceMap extends PureComponent {
     });
 
     const zoom = 12;
-    const map = L.map(`map`, {
-      center: this.defaultCity,
-      zoom,
-      zoomControl: false,
-      marker: true
-    });
-    map.setView(this.defaultCity, zoom);
+    setTimeout(() => {
+      const map = L.map(`map`, {
+        center: this.defaultCity,
+        zoom,
+        zoomControl: false,
+        marker: true
+      });
+      map.setView(this.defaultCity, zoom);
 
-    L
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(map);
-
-    offers.forEach((offer) => {
-      const {coordinates, name} = offer;
       L
-        .marker(coordinates, {icon, title: name})
+        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+        })
         .addTo(map);
-    });
+
+      offers.forEach((offer) => {
+        const {coordinates, name} = offer;
+        L
+          .marker(coordinates, {icon, title: name})
+          .addTo(map);
+      });
+    }, 100);
   }
 
   render() {
@@ -45,6 +47,7 @@ export class PlaceMap extends PureComponent {
   }
 }
 
+export default PlaceMap;
 
 PlaceMap.propTypes = {
   offers: PropTypes.array.isRequired
