@@ -16,28 +16,26 @@ class PlaceMap extends PureComponent {
     });
 
     const zoom = 12;
-    setTimeout(() => {
-      const map = L.map(`map`, {
-        center: this.defaultCity,
-        zoom,
-        zoomControl: false,
-        marker: true
-      });
-      map.setView(this.defaultCity, zoom);
+    const map = L.map(`map`, {
+      center: this.defaultCity,
+      zoom,
+      zoomControl: false,
+      marker: true
+    });
+    map.setView(this.defaultCity, zoom);
 
+    L
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(map);
+
+    offers.forEach((offer) => {
+      const {coordinates, name} = offer;
       L
-        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        })
+        .marker(coordinates, {icon, title: name})
         .addTo(map);
-
-      offers.forEach((offer) => {
-        const {coordinates, name} = offer;
-        L
-          .marker(coordinates, {icon, title: name})
-          .addTo(map);
-      });
-    }, 100);
+    });
   }
 
   render() {
