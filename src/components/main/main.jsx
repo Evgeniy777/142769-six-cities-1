@@ -38,7 +38,9 @@ export const Main = (props = {}) => {
               <OffersList offers={offers} />
             </section>
             <div className="cities__right-section">
-              <PlaceMap offers={offers} />
+              <section className="cities__map map">
+                <PlaceMap offers={offers} />
+              </section>
             </div>
           </div>
         </div>

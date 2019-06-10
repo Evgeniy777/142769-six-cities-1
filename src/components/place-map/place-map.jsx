@@ -9,6 +9,10 @@ class PlaceMap extends PureComponent {
   }
 
   componentDidMount() {
+    this.init();
+  }
+
+  init() {
     const {offers} = this.props;
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
@@ -39,9 +43,7 @@ class PlaceMap extends PureComponent {
   }
 
   render() {
-    return <section className="cities__map map">
-      <div id="map" style={{height: `100%`}}/>
-    </section>;
+    return <div id="map" style={{height: `100%`}}/>;
   }
 }
 

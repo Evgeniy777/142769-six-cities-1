@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Main} from '../main/main.jsx';
+import PlaceMap from '../place-map/place-map.jsx';
 
 describe(`Main`, () => {
   it(`Main correctly renders`, () => {
@@ -48,7 +49,7 @@ describe(`Main`, () => {
     ];
 
     const user = `conne.oliverr@gmail.com`;
-
+    PlaceMap.prototype.componentDidMount = jest.fn();
     const tree = renderer
       .create(<Main
         offers={offers}
