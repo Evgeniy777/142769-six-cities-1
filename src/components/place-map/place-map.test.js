@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Main} from '../main/main.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
 
-describe(`Main`, () => {
-  it(`Main correctly renders`, () => {
+describe(`PlaceMap`, () => {
+  it(`PlaceMap correctly renders`, () => {
     const offers = [
       {
         name: `Beautiful & luxurious apartment at gr eautiful & luxurious apartmenteat location`,
@@ -12,7 +11,8 @@ describe(`Main`, () => {
         price: 520,
         premium: true,
         stars: 93,
-        url: `img/apartment-01.jpg`
+        url: `img/apartment-01.jpg`,
+        coordinates: [52.3809533943508, 4.939309666406198]
       },
       {
         name: `Wood Wood and stone place and stone place`,
@@ -20,7 +20,8 @@ describe(`Main`, () => {
         price: 480,
         premium: false,
         stars: 20,
-        url: `img/room.jpg`
+        url: `img/room.jpg`,
+        coordinates: [52.3909553943508, 4.85309666406198]
       },
       {
         name: `Canal View Prinsengracht`,
@@ -28,34 +29,14 @@ describe(`Main`, () => {
         price: 1672,
         premium: true,
         stars: 40,
-        url: `img/apartment-02.jpg`
+        url: `img/apartment-02.jpg`,
+        coordinates: [52.3709553943508, 4.89309666406198]
       }
     ];
-
-    const cities = [
-      `Paris`,
-      `Cologne`,
-      `Brussels`,
-      `Amsterdam`,
-      `Hamburg`,
-      `Dusseldorf`
-    ];
-
-    const placeSorting = [
-      `Popular`,
-      `Price: low to high`,
-      `Price: high to low`,
-      `Top rated first`
-    ];
-
-    const user = `conne.oliverr@gmail.com`;
     PlaceMap.prototype.componentDidMount = jest.fn();
     const tree = renderer
-      .create(<Main
+      .create(<PlaceMap
         offers={offers}
-        cities={cities}
-        placeSorting={placeSorting}
-        user={user}
       />).toJSON();
     expect(tree).toMatchSnapshot();
   });

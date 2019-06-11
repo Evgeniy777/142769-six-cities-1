@@ -1,8 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from '../app/app.jsx';
+import PlaceMap from '../place-map/place-map.jsx';
 
-const places = [
+const offers = [
   {
     name: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
@@ -56,9 +57,10 @@ const cities = [
 
 describe(`App`, () => {
   it(`App correctly renders`, () => {
+    PlaceMap.prototype.componentDidMount = jest.fn();
     const tree = renderer
       .create(<App
-        places={places}
+        offers={offers}
         cities={cities}
       />).toJSON();
     expect(tree).toMatchSnapshot();
