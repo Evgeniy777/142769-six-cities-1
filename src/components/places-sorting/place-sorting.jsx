@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export const PlaceSorting = (props = {}) => {
-  const {placeSorting = []} = props;
+const PlaceSorting = (props = {}) => {
+  const {sort, placesFilter = {}} = props;
+  const list = Object.values(placesFilter);
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex="0">
-        Popular
+        {sort}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
       <ul className="places__options places__options--custom places__options--opened">
-        {placeSorting.map((it, i) => {
+        {list.map((it, i) => {
+          const item = placesFilter[it];
           return (
-            <li className="places__option places__option--active" tabIndex="0" key={i}>{it}</li>
+            <li
+              className={`places__option ${item === sort ? `places__option--active` : ``}`}
+              tabIndex="0"
+              key={`${item}-${i}`}>
+              {it}
+            </li>
           );
         })}
       </ul>
@@ -23,7 +31,20 @@ export const PlaceSorting = (props = {}) => {
   );
 };
 
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    sort: state.sort
+  });
+};
+
+export {PlaceSorting};
+
+export default connect(
+    mapStateToProps
+)(PlaceSorting);
+
 PlaceSorting.propTypes = {
-  placeSorting: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  sort: PropTypes.string.isRequired,
+  placesFilter: PropTypes.object.isRequired,
   onSorting: PropTypes.func
 };

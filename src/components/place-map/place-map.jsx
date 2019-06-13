@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import L from 'leaflet';
 
 class PlaceMap extends PureComponent {
-  constructor(props = {}) {
+  constructor(props) {
     super(props);
     this.defaultCity = [52.38333, 4.9];
   }
@@ -13,7 +13,7 @@ class PlaceMap extends PureComponent {
   }
 
   init() {
-    const {offers} = this.props;
+    const {offers = []} = this.props;
     const icon = L.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]

@@ -5,9 +5,10 @@ import {PlaceSorting} from '../places-sorting/place-sorting.jsx';
 import {OffersList} from '../offers-list/offers-list.jsx';
 import {Tabs} from '../tabs/tabs.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
+import {connect} from 'react-redux';
 
-export const Main = (props = {}) => {
-  const {offers = [], cities, user, placeSorting} = props;
+const Main = (props) => {
+  const {city, offers} = props;
   return (
     <div>
       <div style={{display: `none`}}>
@@ -25,21 +26,21 @@ export const Main = (props = {}) => {
           </symbol>
         </svg>
       </div>
-      <Header user={user}/>
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Tabs cities={cities}/>
+        <Tabs />
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
-              <PlaceSorting placeSorting={placeSorting}/>
-              <OffersList offers={offers} />
+              <b className="places__found">{offers.length} places to stay in {city}</b>
+              <PlaceSorting />
+              <OffersList />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <PlaceMap offers={offers} />
+                <PlaceMap />
               </section>
             </div>
           </div>
@@ -50,8 +51,19 @@ export const Main = (props = {}) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.array.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  user: PropTypes.string.isRequired,
-  placeSorting: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
+
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    city: state.city,
+    offers: state.offers
+  });
+};
+
+export {Main};
+
+export default connect(
+    mapStateToProps
+)(Main);
