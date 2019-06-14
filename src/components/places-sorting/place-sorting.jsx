@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 const PlaceSorting = (props = {}) => {
-  const {sort, placesFilter = {}} = props;
+  const {sort, placesFilter} = props;
   const list = Object.values(placesFilter);
   return (
     <form className="places__sorting" action="#" method="get">
@@ -33,7 +33,8 @@ const PlaceSorting = (props = {}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    sort: state.sort
+    sort: state.sort,
+    placesFilter: state.placesFilter
   });
 };
 

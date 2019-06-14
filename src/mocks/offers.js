@@ -7,7 +7,7 @@ const offers = [
     premium: true,
     stars: 93,
     url: `img/apartment-01.jpg`,
-    coordinates: [52.3909553943508, 4.85309666406198]
+    coordinates: [48.85306, 2.34528]
   },
   {
     city: `Cologne`,
@@ -21,13 +21,23 @@ const offers = [
   },
   {
     city: `Brussels`,
-    name: `Canal View Prinsengracht`,
+    name: `Hotel Novotel Brussels off Grand Place`,
     type: `Apartment`,
     price: 132,
     premium: false,
     stars: 80,
     url: `img/apartment-02.jpg`,
-    coordinates: [52.3909553943508, 4.929309666406198]
+    coordinates: [50.846309, 4.355026]
+  },
+  {
+    city: `Brussels`,
+    name: `Hilton Brussels Grand Place`,
+    type: `Apartment`,
+    price: 132,
+    premium: false,
+    stars: 80,
+    url: `img/apartment-02.jpg`,
+    coordinates: [50.845979, 4.356129]
   },
   {
     city: `Amsterdam`,
@@ -47,7 +57,7 @@ const offers = [
     premium: false,
     stars: 80,
     url: `img/room.jpg`,
-    coordinates: [52.3809533943508, 4.939309666406198]
+    coordinates: [53.535, 10.04082]
   },
   {
     city: `Dusseldorf`,
@@ -64,27 +74,27 @@ const offers = [
 const cities = [
   {
     name: `Paris`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [48.864716, 2.349014]
   },
   {
     name: `Cologne`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [50.941357, 6.958307]
   },
   {
     name: `Brussels`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [50.8505, 4.3488]
   },
   {
     name: `Amsterdam`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [52.370216, 4.895168]
   },
   {
     name: `Hamburg`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [53.551086, 9.993682]
   },
   {
     name: `Dusseldorf`,
-    coordinates: [52.38333, 4.9]
+    coordinates: [51.217941, 6.761680]
   }
 ];
 

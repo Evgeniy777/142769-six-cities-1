@@ -4,15 +4,16 @@ import {PlaceSorting} from '../places-sorting/place-sorting.jsx';
 
 describe(`PlaceSorting`, () => {
   it(`PlaceSorting correctly renders`, () => {
-    const placeSorting = [
-      `Popular`,
-      `Price: low to high`,
-      `Price: high to low`,
-      `Top rated first`
-    ];
+    const placesFilter = {
+      POPULAR: `Popular`,
+      PRICE_ASC: `Price: low to high`,
+      PRICE_DESC: `Price: high to low`,
+      TOP_RATED_FIRST: `Top rated first`
+    };
     const tree = renderer
       .create(<PlaceSorting
-        placeSorting={placeSorting}
+        sort={placesFilter.POPULAR}
+        placesFilter={placesFilter}
       />).toJSON();
     expect(tree).toMatchSnapshot();
   });

@@ -1,5 +1,6 @@
 import {reducer, ActionCreator, getOffers} from "./reducer";
-import {offers} from "./mocks/offers";
+import {offers, cities} from "./mocks/offers";
+import {user, placesFilter} from "./mocks/data";
 
 it(`Should change city`, () => {
   const neededCity = offers[3].city;
@@ -27,6 +28,10 @@ it(`Should reset city`, () => {
       ActionCreator.resetCity(defaultCity)
   )).toEqual({
     city: defaultCity,
-    offers: getOffers(defaultCity)
+    cities,
+    offers: getOffers(defaultCity),
+    user,
+    placesFilter,
+    sort: placesFilter.POPULAR
   });
 });

@@ -7,6 +7,7 @@ const defaultCity = cities[0];
 
 const initialState = {
   city: defaultCity.name,
+  cities,
   offers: getOffers(defaultCity.name),
   user,
   placesFilter,
