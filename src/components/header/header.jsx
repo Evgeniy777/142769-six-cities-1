@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export const Header = (props = {}) => {
+const Header = (props = {}) => {
   const {user} = props;
   return (
     <header className="header">
@@ -30,6 +31,16 @@ export const Header = (props = {}) => {
 };
 
 Header.propTypes = {
-  user: PropTypes.string.isRequired,
-  onUserClick: PropTypes.func
+  user: PropTypes.string.isRequired
 };
+
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    user: state.user
+  });
+
+export {Header};
+
+export default connect(
+    mapStateToProps
+)(Header);

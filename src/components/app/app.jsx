@@ -1,9 +1,10 @@
 import React from 'react';
-import {Main} from '../main/main.jsx';
-import {cities, user, placeSorting} from '../data';
-import {offers} from '../../mocks/offers';
+import Main from '../main/main.jsx';
 
-export const App = () => {
-  return <Main offers={offers} cities={cities} user={user} placeSorting={placeSorting}/>;
+const App = () => {
+  return <Main />;
 };
 
+export {App};
+
+export default App;
