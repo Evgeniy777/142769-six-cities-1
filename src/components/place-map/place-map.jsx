@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import L from 'leaflet';
+import {connect} from 'react-redux';
 
 class PlaceMap extends PureComponent {
   constructor(props) {
@@ -47,7 +48,18 @@ class PlaceMap extends PureComponent {
   }
 }
 
-export default PlaceMap;
+const mapStateToProps = (state, ownProps) => {
+  return  Object.assign({}, ownProps, {
+    offers: state.offers,
+  });
+};
+
+
+export {PlaceMap};
+
+export default connect(
+  mapStateToProps
+)(PlaceMap);
 
 PlaceMap.propTypes = {
   offers: PropTypes.array.isRequired

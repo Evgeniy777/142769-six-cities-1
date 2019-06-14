@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Header} from '../header/header.jsx';
-import {PlaceSorting} from '../places-sorting/place-sorting.jsx';
-import {OffersList} from '../offers-list/offers-list.jsx';
-import {Tabs} from '../tabs/tabs.jsx';
+import Header from '../header/header.jsx';
+import PlaceSorting from '../places-sorting/place-sorting.jsx';
+import OffersList from '../offers-list/offers-list.jsx';
+import Tabs from '../tabs/tabs.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
 import {connect} from 'react-redux';
 

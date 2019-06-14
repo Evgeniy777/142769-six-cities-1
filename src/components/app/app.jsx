@@ -1,10 +1,10 @@
 import React from 'react';
-import {Main} from '../main/main.jsx';
-import {offers, cities} from "../../mocks/offers";
+import Main from '../main/main.jsx';
 
-export const App = () => {
-  return <Main
-    offers={offers}
-    cities={cities}
-  />;
+const App = () => {
+  return <Main />;
 };
+
+export {App};
+
+export default App;
