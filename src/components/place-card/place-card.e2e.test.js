@@ -9,14 +9,17 @@ describe(`PlaceCard`, () => {
   it(`should call title handler function`, () => {
     const handler = jest.fn();
     const card = {
-      name: `Wood and stone place`,
-      price: 80,
-      premium: false,
-      stars: 80,
-      onTitleClick: handler
+      city: `Amsterdam`,
+      name: `Nice, cozy, warm big bed apartment`,
+      type: `Apartment`,
+      price: 180,
+      premium: true,
+      stars: 100,
+      url: `img/apartment-03.jpg`,
+      coordinates: [52.3809553943508, 4.939309666406198]
     };
     const wrapper = shallow(
-        <PlaceCard place={card} />
+        <PlaceCard place={card} onItemClick={handler}/>
     );
     const title = wrapper.find(`.place-card__name`);
     expect(title.length).toEqual(1);
