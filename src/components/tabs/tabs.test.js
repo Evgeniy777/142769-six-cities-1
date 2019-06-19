@@ -35,7 +35,7 @@ describe(`Tabs`, () => {
       .create(<Tabs
         city={city}
         cities={cities}
-        onChooseCity={jest.fn()}
+        onItemClick={jest.fn()}
       />).toJSON();
     expect(tree).toMatchSnapshot();
   });

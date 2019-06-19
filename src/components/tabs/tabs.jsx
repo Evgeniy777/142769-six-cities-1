@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
-const Tabs = (props = {}) => {
-  const {city, cities, onChooseCity} = props;
+const Tabs = (props) => {
+  const {city, cities, onChooseCity, onItemClick} = props;
 
   return (
     <div className="cities tabs">
@@ -18,7 +18,10 @@ const Tabs = (props = {}) => {
                 <a
                   className={`locations__item-link tabs__item ${isActive ? `tabs__item--active` : ``}`}
                   href="#"
-                  onClick={() => onChooseCity(name)}>
+                  onClick={() => {
+                    onItemClick(it);
+                    onChooseCity(name);
+                  }}>
                   <span>{name}</span>
                 </a>
               </li>
@@ -33,7 +36,8 @@ const Tabs = (props = {}) => {
 Tabs.propTypes = {
   city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  onChooseCity: PropTypes.func.isRequired
+  onChooseCity: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -43,7 +47,6 @@ const mapStateToProps = (state, ownProps) => {
     offers: state.offers
   });
 };
-
 
 const mapDispatchToProps = (dispatch) => ({
   onChooseCity: (city) => {

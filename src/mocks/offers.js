@@ -50,6 +50,26 @@ const offers = [
     coordinates: [52.3809553943508, 4.939309666406198]
   },
   {
+    city: `Brussels`,
+    name: `Hotel Novotel Brussels off Grand Place`,
+    type: `Apartment`,
+    price: 132,
+    premium: false,
+    stars: 80,
+    url: `img/apartment-03.jpg`,
+    coordinates: [50.046309, 4.355026]
+  },
+  {
+    city: `Brussels`,
+    name: `Hilton Brussels Grand Place`,
+    type: `Apartment`,
+    price: 132,
+    premium: false,
+    stars: 80,
+    url: `img/room.jpg`,
+    coordinates: [50.245979, 4.256129]
+  },
+  {
     city: `Hamburg`,
     name: `Wood and stone place`,
     type: `Private room`,
