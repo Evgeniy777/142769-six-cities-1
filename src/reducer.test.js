@@ -1,4 +1,4 @@
-import {reducer, ActionCreator, getOffers} from "./reducer";
+import {reducer, ActionCreator} from "./reducer";
 
 const offers = [
   {
@@ -135,12 +135,12 @@ it(`Should change city`, () => {
   expect(reducer(
       {
         city: currentCity,
-        offers: getOffers(currentCity)
+        offers: currentCity
       },
       ActionCreator.changeCity(neededCity)
   )).toEqual({
     city: neededCity,
-    offers: getOffers(neededCity)
+    offers: neededCity
   });
 });
 
@@ -150,13 +150,13 @@ it(`Should reset city`, () => {
   expect(reducer(
       {
         city: currentCity,
-        offers: getOffers(currentCity)
+        offers: currentCity
       },
       ActionCreator.resetCity(defaultCity)
   )).toEqual({
     city: defaultCity,
     cities,
-    offers: getOffers(defaultCity),
+    offers: defaultCity,
     user,
     placesFilter,
     sort: placesFilter.POPULAR

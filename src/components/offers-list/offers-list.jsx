@@ -4,10 +4,10 @@ import {PlaceCard} from '../place-card/place-card.jsx';
 import {connect} from 'react-redux';
 
 const OffersList = (props) => {
-  const {offers, onItemClick} = props;
+  const {filteredOffers, onItemClick} = props;
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((it, i) => {
+      {filteredOffers.map((it, i) => {
         return <PlaceCard
           place={it}
           key={i}
@@ -20,7 +20,7 @@ const OffersList = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    offers: state.offers
+    filteredOffers: state.filteredOffers
   });
 };
 
@@ -31,6 +31,6 @@ export default connect(
 )(OffersList);
 
 OffersList.propTypes = {
-  offers: PropTypes.array.isRequired,
+  filteredOffers: PropTypes.array.isRequired,
   onItemClick: PropTypes.func
 };

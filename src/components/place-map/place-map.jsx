@@ -18,21 +18,21 @@ class PlaceMap extends PureComponent {
       return;
     }
 
-    const {city, cities, offers} = this.props;
+    const {city, cities, filteredOffers} = this.props;
     const cityObj = cities.find((item) => item.name === city);
     const {coordinates} = cityObj;
     this.map.setView(coordinates, this.zoom);
     this._removeMarkers();
-    this._setMarkers(offers);
+    this._setMarkers(filteredOffers);
   }
 
   _setMarkers(offers) {
     const markers = offers.map((offer) => {
-      const {coordinates, name} = offer;
+      const {location, title} = offer;
       return L
-        .marker(coordinates, {
+        .marker([location.latitude, location.longitude], {
           icon: this._icon,
-          title: name
+          title
         })
         .addTo(this.map);
     });
@@ -50,7 +50,7 @@ class PlaceMap extends PureComponent {
   }
 
   init() {
-    const {city, cities, offers} = this.props;
+    const {city, cities, filteredOffers} = this.props;
     const cityObj = cities.find((item) => item.name === city);
     const {coordinates} = cityObj;
     this._icon = L.icon({
@@ -72,7 +72,7 @@ class PlaceMap extends PureComponent {
       })
       .addTo(this.map);
 
-    this._setMarkers(offers);
+    this._setMarkers(filteredOffers);
   }
 
   render() {
@@ -84,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     city: state.city,
     cities: state.cities,
-    offers: state.offers
+    filteredOffers: state.filteredOffers
   });
 };
 
@@ -98,5 +98,5 @@ export default connect(
 PlaceMap.propTypes = {
   city: PropTypes.string.isRequired,
   cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  offers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };

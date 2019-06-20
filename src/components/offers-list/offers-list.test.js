@@ -4,35 +4,31 @@ import {OffersList} from '../offers-list/offers-list.jsx';
 
 describe(`OffersList`, () => {
   it(`OffersList correctly renders`, () => {
-    const offers = [
+    const filteredOffers = [
       {
-        name: `Beautiful & luxurious apartment at gr eautiful & luxurious apartmenteat location`,
-        type: `Apartment`,
-        price: 520,
-        premium: true,
-        stars: 93,
-        url: `img/apartment-01.jpg`
-      },
-      {
-        name: `Wood Wood and stone place and stone place`,
+        city: `Cologne`,
+        name: `Wood and stone place`,
         type: `Private room`,
-        price: 480,
+        price: 80,
         premium: false,
-        stars: 20,
-        url: `img/room.jpg`
+        stars: 80,
+        url: `img/room.jpg`,
+        coordinates: [52.369553943508, 4.85309666406198]
       },
       {
-        name: `Canal View Prinsengracht`,
+        city: `Cologne`,
+        name: `Hotel Novotel Brussels off Grand Place`,
         type: `Apartment`,
-        price: 1672,
-        premium: true,
-        stars: 40,
-        url: `img/apartment-02.jpg`
+        price: 132,
+        premium: false,
+        stars: 80,
+        url: `img/apartment-02.jpg`,
+        coordinates: [50.846309, 4.355026]
       }
     ];
     const tree = renderer
       .create(<OffersList
-        offers={offers}
+        filteredOffers={filteredOffers}
       />).toJSON();
     expect(tree).toMatchSnapshot();
   });

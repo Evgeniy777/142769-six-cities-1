@@ -70,6 +70,19 @@ describe(`App`, () => {
       }
     ];
 
+    const filteredOffers = [
+      {
+        city: `Paris`,
+        name: `Beautiful & luxurious apartment at great location`,
+        type: `Apartment`,
+        price: 120,
+        premium: true,
+        stars: 93,
+        url: `img/apartment-01.jpg`,
+        coordinates: [52.3909553943508, 4.85309666406198]
+      }
+    ];
+
     const cities = [
       {
         name: `Paris`,
@@ -108,6 +121,7 @@ describe(`App`, () => {
       city: cities[0].name,
       cities,
       offers,
+      filteredOffers,
       user: `xxx@xxx.gmail.com`,
       placesFilter,
       sort: placesFilter.POPULAR

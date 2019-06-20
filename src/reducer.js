@@ -1,16 +1,14 @@
 import {cities} from "./mocks/offers";
 import {user, placesFilter} from "./mocks/data";
 
-const getOffers = (name) => offers.filter((offer) => offer.city === name);
-
 const Operation = {
   loadOffers: () => (dispatch, _getState, api) => {
-    debugger;
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.loadOffers(response.data));
       });
-  }
+  },
+  filterOffers: (city, offers) => offers.filter((it) => it.city.name === city)
 };
 
 const defaultCity = cities[0];
@@ -19,6 +17,7 @@ const initialState = {
   city: defaultCity.name,
   cities,
   offers: [],
+  filteredOffers: [],
   user,
   placesFilter,
   sort: placesFilter.POPULAR,
@@ -55,7 +54,7 @@ const ActionCreator = {
     return {
       type: Actions.REQUIRED_AUTHORIZATION,
       payload: status
-    }
+    };
   }
 };
 
@@ -64,14 +63,15 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case Actions.CHANGE_CITY: return Object.assign({}, state, {
       city: payload,
-      offers: getOffers(payload)
+      filteredOffers: Operation.filterOffers(action.payload, state.offers)
     });
     case Actions.RESET_CITY: return Object.assign({}, initialState);
-    case ActionCreator.LOAD_OFFERS: return Object.assign({}, state, {
-      offers: action.payload
+    case Actions.LOAD_OFFERS: return Object.assign({}, state, {
+      offers: action.payload,
+      filteredOffers: Operation.filterOffers(state.city, action.payload)
     });
   }
   return state;
 };
 
-export {reducer, getOffers, ActionCreator, Operation};
+export {reducer, ActionCreator, Operation};
