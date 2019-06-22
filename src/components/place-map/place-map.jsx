@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import L from 'leaflet';
 import {connect} from 'react-redux';
 
+import {getCities, getFilteredOffers} from "../../reducer/data/selectors";
+import {getCity} from "../../reducer/app/selectors";
+
 class PlaceMap extends PureComponent {
   constructor(props) {
     super(props);
@@ -18,12 +21,20 @@ class PlaceMap extends PureComponent {
       return;
     }
 
-    const {city, cities, filteredOffers} = this.props;
+    const {city, cities, filteredOffers = []} = this.props;
     const cityObj = cities.find((item) => item.name === city);
-    const {coordinates} = cityObj;
-    this.map.setView(coordinates, this.zoom);
-    this._removeMarkers();
-    this._setMarkers(filteredOffers);
+
+    if (cityObj) {
+      const {location} = cityObj;
+      const {latitude, longitude} = location;
+      if (!this.map) {
+        this.init();
+      } else {
+        this.map.setView([latitude, longitude], this.zoom);
+        this._removeMarkers();
+        this._setMarkers(filteredOffers);
+      }
+    }
   }
 
   _setMarkers(offers) {
@@ -52,19 +63,24 @@ class PlaceMap extends PureComponent {
   init() {
     const {city, cities, filteredOffers} = this.props;
     const cityObj = cities.find((item) => item.name === city);
-    const {coordinates} = cityObj;
+
+    if (!cityObj) {
+      return;
+    }
+
+    const {location} = cityObj;
+    const {latitude, longitude} = location;
     this._icon = L.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
     this.map = L.map(`map`, {
-      center: coordinates,
+      center: [latitude, longitude],
       zoom: this.zoom,
       zoomControl: false,
       marker: true
     });
-    this.map.setView(coordinates, this.zoom);
 
     L
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -82,9 +98,9 @@ class PlaceMap extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    city: state.city,
-    cities: state.cities,
-    filteredOffers: state.filteredOffers
+    city: getCity(state),
+    cities: getCities(state),
+    filteredOffers: getFilteredOffers(state)
   });
 };
 
@@ -96,7 +112,7 @@ export default connect(
 )(PlaceMap);
 
 PlaceMap.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired)
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {getUser} from "../../reducer/user/selectors";
+
 
 const Header = (props = {}) => {
   const {user} = props;
@@ -36,7 +38,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    user: state.user
+    user: getUser(state)
   });
 
 export {Header};

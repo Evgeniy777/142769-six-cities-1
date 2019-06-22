@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {getSort, getPlacesFilter} from "../../reducer/app/selectors";
 
 const PlaceSorting = (props = {}) => {
   const {sort, placesFilter} = props;
@@ -33,8 +34,8 @@ const PlaceSorting = (props = {}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    sort: state.sort,
-    placesFilter: state.placesFilter
+    sort: getSort(state),
+    placesFilter: getPlacesFilter(state)
   });
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {PlaceCard} from '../place-card/place-card.jsx';
 import {connect} from 'react-redux';
+import {getFilteredOffers} from "../../reducer/data/selectors";
 
 const OffersList = (props) => {
   const {filteredOffers, onItemClick} = props;
@@ -20,7 +21,7 @@ const OffersList = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    filteredOffers: state.filteredOffers
+    filteredOffers: getFilteredOffers(state)
   });
 };
 

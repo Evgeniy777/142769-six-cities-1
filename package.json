@@ -10,6 +10,7 @@
     "start": "webpack-dev-server"
   },
   "devDependencies": {
+    "axios-mock-adapter": "1.16.0",
     "babel-jest": "24.8.0",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.13.1",
@@ -40,6 +41,7 @@
     "recompose": "^0.30.0",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0",
+    "reselect": "^4.0.0",
     "webpack": "^4.30.0"
   }
 }

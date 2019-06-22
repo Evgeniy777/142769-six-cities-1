@@ -8,6 +8,9 @@ import PlaceMap from '../place-map/place-map.jsx';
 import {connect} from 'react-redux';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
 
+import {getFilteredOffers} from "../../reducer/data/selectors";
+import {getCity} from "../../reducer/app/selectors";
+
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
 
@@ -55,15 +58,14 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    city: state.city,
-    offers: state.offers,
-    filteredOffers: state.filteredOffers
+    city: getCity(state),
+    filteredOffers: getFilteredOffers(state)
   });
 };
 

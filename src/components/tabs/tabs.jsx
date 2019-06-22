@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
+import {ActionCreator} from '../../reducer/app/app';
+
+import {getCities} from "../../reducer/data/selectors";
+import {getCity} from "../../reducer/app/selectors";
 
 const Tabs = (props) => {
   const {city, cities, onChooseCity, onItemClick} = props;
@@ -34,17 +37,16 @@ const Tabs = (props) => {
 };
 
 Tabs.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  onChooseCity: PropTypes.func.isRequired,
+  onChooseCity: PropTypes.func,
   onItemClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    city: state.city,
-    cities: state.cities,
-    offers: state.offers
+    city: getCity(state),
+    cities: getCities(state)
   });
 };
 

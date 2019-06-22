@@ -1,4 +1,7 @@
-import {reducer, ActionCreator} from "./reducer";
+import {
+  reducer,
+  ActionCreator
+} from "./app";
 
 const offers = [
   {
@@ -93,72 +96,17 @@ const offers = [
   }
 ];
 
-const cities = [
-  {
-    name: `Paris`,
-    coordinates: [48.864716, 2.349014]
-  },
-  {
-    name: `Cologne`,
-    coordinates: [50.941357, 6.958307]
-  },
-  {
-    name: `Brussels`,
-    coordinates: [50.8505, 4.3488]
-  },
-  {
-    name: `Amsterdam`,
-    coordinates: [52.370216, 4.895168]
-  },
-  {
-    name: `Hamburg`,
-    coordinates: [53.551086, 9.993682]
-  },
-  {
-    name: `Dusseldorf`,
-    coordinates: [51.217941, 6.761680]
-  }
-];
-
-const placesFilter = {
-  POPULAR: `Popular`,
-  PRICE_ASC: `Price: low to high`,
-  PRICE_DESC: `Price: high to low`,
-  TOP_RATED_FIRST: `Top rated first`
-};
-
-const user = `Oliver.conner@gmail.com`;
-
 it(`Should change city`, () => {
   const neededCity = offers[3].city;
   const currentCity = offers[2].city;
   expect(reducer(
       {
         city: currentCity,
-        offers: currentCity
+        filteredOffers: []
       },
       ActionCreator.changeCity(neededCity)
   )).toEqual({
     city: neededCity,
-    offers: neededCity
-  });
-});
-
-it(`Should reset city`, () => {
-  const defaultCity = offers[0].city;
-  const currentCity = offers[2].city;
-  expect(reducer(
-      {
-        city: currentCity,
-        offers: currentCity
-      },
-      ActionCreator.resetCity(defaultCity)
-  )).toEqual({
-    city: defaultCity,
-    cities,
-    offers: defaultCity,
-    user,
-    placesFilter,
-    sort: placesFilter.POPULAR
+    filteredOffers: []
   });
 });
