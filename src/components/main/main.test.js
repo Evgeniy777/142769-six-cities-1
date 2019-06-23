@@ -7,7 +7,7 @@ import {PlaceMap} from '../place-map/place-map.jsx';
 
 describe(`Main`, () => {
   it(`Main correctly renders`, () => {
-    const offers = [
+    const filteredOffers = [
       {
         city: `Paris`,
         name: `Beautiful & luxurious apartment at great location`,
@@ -19,7 +19,7 @@ describe(`Main`, () => {
         coordinates: [52.3909553943508, 4.85309666406198]
       },
       {
-        city: `Cologne`,
+        city: `Paris`,
         name: `Wood and stone place`,
         type: `Private room`,
         price: 80,
@@ -27,46 +27,6 @@ describe(`Main`, () => {
         stars: 80,
         url: `img/room.jpg`,
         coordinates: [52.369553943508, 4.85309666406198]
-      },
-      {
-        city: `Brussels`,
-        name: `Canal View Prinsengracht`,
-        type: `Apartment`,
-        price: 132,
-        premium: false,
-        stars: 80,
-        url: `img/apartment-02.jpg`,
-        coordinates: [52.3909553943508, 4.929309666406198]
-      },
-      {
-        city: `Amsterdam`,
-        name: `Nice, cozy, warm big bed apartment`,
-        type: `Apartment`,
-        price: 180,
-        premium: true,
-        stars: 100,
-        url: `img/apartment-03.jpg`,
-        coordinates: [52.3809553943508, 4.939309666406198]
-      },
-      {
-        city: `Hamburg`,
-        name: `Wood and stone place`,
-        type: `Private room`,
-        price: 80,
-        premium: false,
-        stars: 80,
-        url: `img/room.jpg`,
-        coordinates: [52.3809533943508, 4.939309666406198]
-      },
-      {
-        city: `Dusseldorf`,
-        name: `Wood and stone place`,
-        type: `Private room`,
-        price: 80,
-        premium: false,
-        stars: 80,
-        url: `img/room.jpg`,
-        coordinates: [52.3809533943508, 4.939309666406198]
       }
     ];
 
@@ -107,10 +67,12 @@ describe(`Main`, () => {
     const initialState = {
       city: cities[0].name,
       cities,
-      offers,
+      offers: [],
+      filteredOffers: [],
       user: `xxx@xxx.gmail.com`,
       placesFilter,
-      sort: placesFilter.POPULAR
+      sort: placesFilter.POPULAR,
+      isAuthorizationRequired: false
     };
     PlaceMap.prototype.componentDidMount = jest.fn();
     const mockStore = reduxMockStore();
@@ -118,7 +80,7 @@ describe(`Main`, () => {
     const tree = renderer
       .create(<Provider store={store}>
         <Main
-          offers={offers}
+          filteredOffers={filteredOffers}
           city={cities[0].name}
         /></Provider>).toJSON();
     expect(tree).toMatchSnapshot();

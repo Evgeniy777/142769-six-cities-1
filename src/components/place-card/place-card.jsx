@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const PlaceCard = (props = {}) => {
+export const PlaceCard = (props) => {
   const {place, onItemClick} = props;
-  const {premium, url, stars, price, name, type} = place;
+  const {description, rating, price, title, type} = place;
+  const stars = Number(rating) * 100 / 5;
   return (
     <article className="cities__place-card place-card">
-      {premium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
+      {place.is_premium ? <div className="place-card__mark"><span>Premium</span></div> : ``}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={url} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={place.preview_image} width="260" height="200" alt={title} title={description}/>
         </a>
       </div>
       <div className="place-card__info">
@@ -32,7 +33,7 @@ export const PlaceCard = (props = {}) => {
           </div>
         </div>
         <h2 className="place-card__name" onClick={onItemClick}>
-          <a href="#">{name}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

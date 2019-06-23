@@ -8,11 +8,14 @@ import PlaceMap from '../place-map/place-map.jsx';
 import {connect} from 'react-redux';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
 
+import {getFilteredOffers} from "../../reducer/data/selectors";
+import {getCity} from "../../reducer/app/selectors";
+
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
 
 const Main = (props) => {
-  const {city, offers} = props;
+  const {city, filteredOffers} = props;
   return (
     <div>
       <div style={{display: `none`}}>
@@ -38,7 +41,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {city}</b>
+              <b className="places__found">{filteredOffers.length} places to stay in {city}</b>
               <PlaceSorting />
               <OffersListWrapped />
             </section>
@@ -55,14 +58,14 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+  city: PropTypes.string,
+  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    city: state.city,
-    offers: state.offers
+    city: getCity(state),
+    filteredOffers: getFilteredOffers(state)
   });
 };
 
