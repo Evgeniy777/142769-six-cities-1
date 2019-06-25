@@ -78,14 +78,15 @@ exports[`Main Main correctly renders 1`] = `
               <a
                 className="header__nav-link header__nav-link--profile"
                 href="#"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
                 />
                 <span
-                  className="header__user-name user__name"
+                  className="header__login"
                 >
-                  xxx@xxx.gmail.com
+                  Sign in
                 </span>
               </a>
             </li>
@@ -115,7 +116,7 @@ exports[`Main Main correctly renders 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item "
               href="#"
               onClick={[Function]}
             >
@@ -154,7 +155,7 @@ exports[`Main Main correctly renders 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >

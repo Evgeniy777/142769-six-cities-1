@@ -67,7 +67,7 @@ const Main = (props) => {
 Main.propTypes = {
   city: PropTypes.string,
   filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired
+  isAuthorizationRequired: PropTypes.bool
 };
 
 const mapStateToProps = (state, ownProps) => {

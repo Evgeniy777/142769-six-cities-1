@@ -36,8 +36,8 @@ const Header = (props) => {
 
 Header.propTypes = {
   user: PropTypes.object.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  loginUser: PropTypes.func.isRequired
+  isAuthorizationRequired: PropTypes.bool,
+  loginUser: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => ({

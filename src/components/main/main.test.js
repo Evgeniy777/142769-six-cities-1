@@ -65,14 +65,20 @@ describe(`Main`, () => {
     };
 
     const initialState = {
-      city: cities[0].name,
-      cities,
-      offers: [],
-      filteredOffers: [],
-      user: `xxx@xxx.gmail.com`,
-      placesFilter,
-      sort: placesFilter.POPULAR,
-      isAuthorizationRequired: false
+      APP: {
+        city: `Amsterdam`,
+        placesFilter,
+        sort: placesFilter.POPULAR
+      },
+      DATA: {
+        cities,
+        offers: [],
+        filteredOffers: []
+      },
+      USER: {
+        user: {},
+        isAuthorizationRequired: false
+      }
     };
     PlaceMap.prototype.componentDidMount = jest.fn();
     const mockStore = reduxMockStore();
