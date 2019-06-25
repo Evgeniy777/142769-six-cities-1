@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getUser} from "../../reducer/user/selectors";
+import {getUser, getAuthorizationRequired} from "../../reducer/user/selectors";
+import {ActionCreator} from '../../reducer/user/user';
 
 
-const Header = (props = {}) => {
-  const {user} = props;
+const Header = (props) => {
+  const {user, loginUser} = props;
+  const {name} = user;
   return (
     <header className="header">
       <div className="container">
@@ -18,10 +20,10 @@ const Header = (props = {}) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
+                <a className="header__nav-link header__nav-link--profile" href="#" onClick={()=> loginUser(!!name)}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">{user}</span>
+                  {name ? <span className="header__user-name user__name">{name}</span> : <span className="header__login">Sign in</span>}
                 </a>
               </li>
             </ul>
@@ -33,16 +35,28 @@ const Header = (props = {}) => {
 };
 
 Header.propTypes = {
-  user: PropTypes.string.isRequired
+  user: PropTypes.object.isRequired,
+  isAuthorizationRequired: PropTypes.bool,
+  loginUser: PropTypes.func
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  loginUser: (isUserExist) => {
+    if (!isUserExist) {
+      dispatch(ActionCreator.requireAuthorization(true));
+    }
+  }
+});
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    user: getUser(state)
+    user: getUser(state),
+    isAuthorizationRequired: getAuthorizationRequired(state)
   });
 
 export {Header};
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Header);
