@@ -8,8 +8,8 @@ class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null
+      email: ``,
+      password: ``
     };
   }
 
@@ -26,11 +26,7 @@ class SignIn extends React.PureComponent {
 
   _onSubmitForm(e) {
     e.preventDefault();
-    this.props.loginUser(this.state);
-    this.setState({
-      email: null,
-      password: null
-    });
+    this.props.loginUser(this.state, this.props.history);
   }
 
   render() {
@@ -91,11 +87,13 @@ class SignIn extends React.PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user) => {
-    return createAPI(dispatch).post(`/login`, user)
+  loginUser: (user, history) => {
+    return createAPI().post(`/login`, user)
       .then((response) => {
+        debugger;
         dispatch(ActionCreator.loginUser(response.data));
         dispatch(ActionCreator.requireAuthorization(!response));
+        history.push(`/`);
       });
   }
 });
