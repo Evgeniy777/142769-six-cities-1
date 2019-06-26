@@ -6,7 +6,6 @@ import {getUser} from "../../reducer/user/selectors";
 const Favorites = (props) => {
   const {user} = props;
   const {name} = user;
-  debugger;
 
   return (
     <div>

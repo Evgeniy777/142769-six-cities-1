@@ -33,8 +33,8 @@ const withAuthorizationRequired = (Component) => {
   };
 
   return connect(
-    mapStateToProps,
-    null
+      mapStateToProps,
+      null
   )(WithAuthorizationRequired);
 };
 

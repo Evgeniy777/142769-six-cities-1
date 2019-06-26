@@ -4,6 +4,7 @@ import {App} from '../app/app.jsx';
 import {PlaceMap} from '../place-map/place-map.jsx';
 import {Provider} from 'react-redux';
 import reduxMockStore from 'redux-mock-store';
+import {MemoryRouter} from 'react-router-dom';
 
 describe(`App`, () => {
   it(`App correctly renders`, () => {
@@ -138,9 +139,11 @@ describe(`App`, () => {
     const store = mockStore(initialState);
 
     const tree = renderer
-      .create(<Provider store={store}>
-        <App />
-      </Provider>).toJSON();
+      .create(<MemoryRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 import {createAPI} from '../../api';
+import {getUser} from '../../reducer/user/selectors';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -86,11 +87,16 @@ class SignIn extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    user: getUser(state)
+  });
+};
+
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (user, history) => {
     return createAPI().post(`/login`, user)
       .then((response) => {
-        debugger;
         dispatch(ActionCreator.loginUser(response.data));
         dispatch(ActionCreator.requireAuthorization(!response));
         history.push(`/`);
@@ -100,10 +106,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {SignIn};
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(SignIn);
 
 SignIn.propTypes = {
-  loginUser: PropTypes.func.isRequired
+  loginUser: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };

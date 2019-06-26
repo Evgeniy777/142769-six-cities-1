@@ -10,7 +10,6 @@ import withActiveItem from '../../hocs/withActiveItem.jsx';
 
 import {getFilteredOffers} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
-import {getAuthorizationRequired} from "../../reducer/user/selectors";
 
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
@@ -65,8 +64,8 @@ Main.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-      city: getCity(state),
-      filteredOffers: getFilteredOffers(state)
+    city: getCity(state),
+    filteredOffers: getFilteredOffers(state)
   });
 };
 
