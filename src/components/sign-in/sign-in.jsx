@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/user/user';
 import {createAPI} from '../../api';
+import {getUser} from '../../reducer/user/selectors';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null
+      email: ``,
+      password: ``
     };
   }
 
@@ -26,11 +27,7 @@ class SignIn extends React.PureComponent {
 
   _onSubmitForm(e) {
     e.preventDefault();
-    this.props.loginUser(this.state);
-    this.setState({
-      email: null,
-      password: null
-    });
+    this.props.loginUser(this.state, this.props.history);
   }
 
   render() {
@@ -90,22 +87,30 @@ class SignIn extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    user: getUser(state)
+  });
+};
+
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user) => {
-    return createAPI(dispatch).post(`/login`, user)
+  loginUser: (user, history) => {
+    return createAPI().post(`/login`, user)
       .then((response) => {
         dispatch(ActionCreator.loginUser(response.data));
         dispatch(ActionCreator.requireAuthorization(!response));
+        history.push(`/`);
       });
   }
 });
 
 export {SignIn};
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(SignIn);
 
 SignIn.propTypes = {
-  loginUser: PropTypes.func.isRequired
+  loginUser: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 };

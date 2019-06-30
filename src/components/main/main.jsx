@@ -5,24 +5,17 @@ import PlaceSorting from '../places-sorting/place-sorting.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import Tabs from '../tabs/tabs.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
-import SignIn from '../sign-in/sign-in.jsx';
 import {connect} from 'react-redux';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
 
 import {getFilteredOffers} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
-import {getAuthorizationRequired} from "../../reducer/user/selectors";
 
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
 
 const Main = (props) => {
-  const {city, filteredOffers, isAuthorizationRequired} = props;
-
-  if (isAuthorizationRequired) {
-    return <SignIn />;
-  }
-
+  const {city, filteredOffers} = props;
   return (
     <div>
       <div style={{display: `none`}}>
@@ -66,15 +59,13 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string,
-  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  isAuthorizationRequired: PropTypes.bool
+  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     city: getCity(state),
-    filteredOffers: getFilteredOffers(state),
-    isAuthorizationRequired: getAuthorizationRequired(state)
+    filteredOffers: getFilteredOffers(state)
   });
 };
 

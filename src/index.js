@@ -10,9 +10,10 @@ import reducer from './reducer';
 import {Operation} from './reducer/data/data';
 import {ActionCreator} from './reducer/app/app';
 import {getDefaultCityName} from "./reducer/data/selectors";
+import {BrowserRouter} from 'react-router-dom';
 
 const init = () => {
-  const api = createAPI((...args) => store.dispatch(...args));
+  const api = createAPI(() => history.pushState(null, null, `/login`));
 
   const store = createStore(
       reducer,
@@ -29,7 +30,9 @@ const init = () => {
     });
   ReactDOM.render(
       <Provider store={store}>
-        <App />,
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>,
       document.querySelector(`#root`)
   );
