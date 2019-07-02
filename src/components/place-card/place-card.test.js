@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {PlaceCard} from '../place-card/place-card.jsx';
+import {MemoryRouter} from 'react-router-dom';
 
 describe(`PlaceCard`, () => {
   it(`PlaceCard correctly renders`, () => {
@@ -15,9 +16,11 @@ describe(`PlaceCard`, () => {
       coordinates: [52.3809553943508, 4.939309666406198]
     };
     const tree = renderer
-      .create(<PlaceCard
-        place={card}
-      />).toJSON();
+      .create(<MemoryRouter>
+        <PlaceCard
+          place={card}
+        />
+      </MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

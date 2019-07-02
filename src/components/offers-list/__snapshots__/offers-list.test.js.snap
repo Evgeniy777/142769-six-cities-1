@@ -87,7 +87,8 @@ exports[`OffersList OffersList correctly renders 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/undefined"
+          onClick={[Function]}
         />
       </h2>
       <p
@@ -180,7 +181,8 @@ exports[`OffersList OffersList correctly renders 1`] = `
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/offer/undefined"
+          onClick={[Function]}
         />
       </h2>
       <p

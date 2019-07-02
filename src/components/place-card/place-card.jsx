@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 export const PlaceCard = (props) => {
   const {place, onItemClick} = props;
-  const {description, rating, price, title, type} = place;
+  const {description, rating, price, title, type, id} = place;
   const stars = Number(rating) * 100 / 5;
   return (
     <article className="cities__place-card place-card">
@@ -32,8 +33,8 @@ export const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onItemClick}>
-          <a href="#">{title}</a>
+        <h2 className="place-card__name" onClick={() => onItemClick()}>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
