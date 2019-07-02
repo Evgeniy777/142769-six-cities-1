@@ -4,6 +4,7 @@ import {Main} from '../main/main.jsx';
 import {Provider} from 'react-redux';
 import reduxMockStore from 'redux-mock-store';
 import {PlaceMap} from '../place-map/place-map.jsx';
+import {MemoryRouter} from 'react-router-dom';
 
 describe(`Main`, () => {
   it(`Main correctly renders`, () => {
@@ -84,11 +85,14 @@ describe(`Main`, () => {
     const mockStore = reduxMockStore();
     const store = mockStore(initialState);
     const tree = renderer
-      .create(<Provider store={store}>
-        <Main
-          filteredOffers={filteredOffers}
-          city={cities[0].name}
-        /></Provider>).toJSON();
+      .create(<MemoryRouter>
+        <Provider store={store}>
+          <Main
+            filteredOffers={filteredOffers}
+            city={cities[0].name}
+          />
+        </Provider>
+      </MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
