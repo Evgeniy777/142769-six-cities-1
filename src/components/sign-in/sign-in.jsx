@@ -27,7 +27,6 @@ class SignIn extends React.PureComponent {
 
   _onSubmitForm(e) {
     e.preventDefault();
-    debugger;
     this.props.omSubmitUser(this.state, this.props.history);
   }
 
