@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {OffersList} from '../offers-list/offers-list.jsx';
+import {MemoryRouter} from 'react-router-dom';
 
 describe(`OffersList`, () => {
   it(`OffersList correctly renders`, () => {
@@ -27,9 +28,11 @@ describe(`OffersList`, () => {
       }
     ];
     const tree = renderer
-      .create(<OffersList
-        filteredOffers={filteredOffers}
-      />).toJSON();
+      .create(<MemoryRouter>
+        <OffersList
+          filteredOffers={filteredOffers}
+        />
+      </MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

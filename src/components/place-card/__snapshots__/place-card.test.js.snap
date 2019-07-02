@@ -81,9 +81,11 @@ exports[`PlaceCard PlaceCard correctly renders 1`] = `
     </div>
     <h2
       className="place-card__name"
+      onClick={[Function]}
     >
       <a
-        href="#"
+        href="/offer/undefined"
+        onClick={[Function]}
       />
     </h2>
     <p

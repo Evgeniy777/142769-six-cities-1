@@ -21,16 +21,12 @@ const Header = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onUserClick(!!name);
-                  }}>
+                <Link to="/favorites" className="header__nav-link header__nav-link--profile"
+                  onClick={() => onUserClick(!!name)}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  {name ? <Link to="/favorites" className="header__user-name user__name">{name}</Link> : <span className="header__login">Sign in</span>}
-                </a>
+                  {name ? <span className="header__user-name user__name">{name}</span> : <span className="header__login">Sign in</span>}
+                </Link>
               </li>
             </ul>
           </nav>
