@@ -27,7 +27,8 @@ class SignIn extends React.PureComponent {
 
   _onSubmitForm(e) {
     e.preventDefault();
-    this.props.loginUser(this.state, this.props.history);
+    debugger;
+    this.props.omSubmitUser(this.state, this.props.history);
   }
 
   render() {
@@ -94,7 +95,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: (user, history) => {
+  omSubmitUser: (user, history) => {
     return createAPI().post(`/login`, user)
       .then((response) => {
         dispatch(ActionCreator.loginUser(response.data));
@@ -111,6 +112,6 @@ export default connect(
 )(SignIn);
 
 SignIn.propTypes = {
-  loginUser: PropTypes.func.isRequired,
+  omSubmitUser: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 };

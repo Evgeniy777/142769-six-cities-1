@@ -8,6 +8,7 @@ import {getUser} from "../reducer/user/selectors";
 const withUserRequired = (Component) => {
   class WithUserRequired extends React.PureComponent {
     render() {
+      debugger;
       const {user} = this.props;
 
       if (!Object.values(user).length) {

@@ -9,7 +9,9 @@ import withUserRequired from '../../hocs/withUserRequired.jsx';
 const WrappedFavorites = withUserRequired(Favorites);
 const WrappedMain = withAuthorizationRequired(Main);
 
-const App = () => {
+const App = (props) => {
+  debugger;
+  const {history} = props;
   return <Switch>
     <Route path="/" exact render={() => <WrappedMain />} />
     <Route path="/login" component={SignIn} />

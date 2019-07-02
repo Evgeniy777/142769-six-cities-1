@@ -15,7 +15,8 @@ const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
 
 const Main = (props) => {
-  const {city, filteredOffers} = props;
+  debugger;
+  const {city, filteredOffers, history} = props;
   return (
     <div>
       <div style={{display: `none`}}>
