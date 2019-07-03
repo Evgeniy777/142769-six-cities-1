@@ -13,6 +13,7 @@ import {getCity} from "../../reducer/app/selectors";
 
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
+const PlaceSortingWrapped = withActiveItem(PlaceSorting);
 
 const Main = (props) => {
   const {city, filteredOffers} = props;
@@ -42,7 +43,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{filteredOffers.length} places to stay in {city}</b>
-              <PlaceSorting />
+              <PlaceSortingWrapped />
               <OffersListWrapped />
             </section>
             <div className="cities__right-section">
