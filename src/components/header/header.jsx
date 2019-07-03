@@ -5,10 +5,10 @@ import {getUser, getAuthorizationRequired} from "../../reducer/user/selectors";
 import {ActionCreator} from '../../reducer/user/user';
 import {Link} from 'react-router-dom';
 
-
 const Header = (props) => {
   const {user, onUserClick} = props;
   const {name} = user;
+
   return (
     <header className="header">
       <div className="container">
@@ -42,6 +42,12 @@ Header.propTypes = {
   onUserClick: PropTypes.func
 };
 
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    user: getUser(state),
+    isAuthorizationRequired: getAuthorizationRequired(state)
+  });
+
 const mapDispatchToProps = (dispatch) => ({
   onUserClick: (isUserExist) => {
     if (!isUserExist) {
@@ -49,12 +55,6 @@ const mapDispatchToProps = (dispatch) => ({
     }
   }
 });
-
-const mapStateToProps = (state, ownProps) =>
-  Object.assign({}, ownProps, {
-    user: getUser(state),
-    isAuthorizationRequired: getAuthorizationRequired(state)
-  });
 
 export {Header};
 

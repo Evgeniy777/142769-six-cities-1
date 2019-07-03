@@ -180,6 +180,11 @@ const Favorites = (props) => {
     </div>
   );
 };
+
+Favorites.propTypes = {
+  user: PropTypes.object.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     user: getUser(state)
@@ -191,7 +196,3 @@ export {Favorites};
 export default connect(
     mapStateToProps
 )(Favorites);
-
-Favorites.propTypes = {
-  user: PropTypes.object.isRequired
-};

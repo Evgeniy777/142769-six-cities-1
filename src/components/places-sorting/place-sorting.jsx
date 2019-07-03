@@ -47,6 +47,14 @@ const PlaceSorting = (props) => {
   );
 };
 
+PlaceSorting.propTypes = {
+  sort: PropTypes.string.isRequired,
+  placesFilter: PropTypes.object.isRequired,
+  onSorting: PropTypes.func,
+  onItemClick: PropTypes.func,
+  onToggleMenu: PropTypes.func
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     sort: getSort(state),
@@ -54,7 +62,6 @@ const mapStateToProps = (state, ownProps) => {
     filteredOffers: getFilteredOffers(state)
   });
 };
-
 const mapDispatchToProps = (dispatch) => ({
   onSorting: (type) => {
     dispatch(ActionCreator.changeSort(type));
@@ -70,11 +77,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(PlaceSorting);
-
-PlaceSorting.propTypes = {
-  sort: PropTypes.string.isRequired,
-  placesFilter: PropTypes.object.isRequired,
-  onSorting: PropTypes.func.isRequired,
-  onItemClick: PropTypes.func.isRequired,
-  onToggleMenu: PropTypes.func.isRequired
-};

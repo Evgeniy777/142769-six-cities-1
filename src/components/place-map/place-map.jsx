@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import L from 'leaflet';
 import {connect} from 'react-redux';
-
 import {getCities, getFilteredOffers} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
 
@@ -96,6 +95,12 @@ class PlaceMap extends PureComponent {
   }
 }
 
+PlaceMap.propTypes = {
+  city: PropTypes.string,
+  cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired)
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     city: getCity(state),
@@ -104,15 +109,8 @@ const mapStateToProps = (state, ownProps) => {
   });
 };
 
-
 export {PlaceMap};
 
 export default connect(
     mapStateToProps
 )(PlaceMap);
-
-PlaceMap.propTypes = {
-  city: PropTypes.string,
-  cities: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  filteredOffers: PropTypes.arrayOf(PropTypes.object.isRequired)
-};

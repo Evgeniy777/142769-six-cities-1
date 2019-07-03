@@ -33,6 +33,12 @@ const OffersList = (props) => {
   );
 };
 
+OffersList.propTypes = {
+  filteredOffers: PropTypes.array.isRequired,
+  onItemClick: PropTypes.func,
+  sort: PropTypes.string
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     filteredOffers: getFilteredOffers(state),
@@ -45,9 +51,3 @@ export {OffersList};
 export default connect(
     mapStateToProps
 )(OffersList);
-
-OffersList.propTypes = {
-  filteredOffers: PropTypes.array.isRequired,
-  onItemClick: PropTypes.func,
-  sort: PropTypes.string.isRequired
-};

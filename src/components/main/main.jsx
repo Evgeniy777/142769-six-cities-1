@@ -7,7 +7,6 @@ import Tabs from '../tabs/tabs.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
 import {connect} from 'react-redux';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
-
 import {getFilteredOffers} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
 
