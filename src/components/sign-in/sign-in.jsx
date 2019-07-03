@@ -87,6 +87,11 @@ class SignIn extends React.PureComponent {
   }
 }
 
+SignIn.propTypes = {
+  omSubmitUser: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     user: getUser(state)
@@ -109,8 +114,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignIn);
-
-SignIn.propTypes = {
-  omSubmitUser: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
-};

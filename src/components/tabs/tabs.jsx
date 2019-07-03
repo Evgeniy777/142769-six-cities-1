@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/app/app';
-
 import {getCities} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
 

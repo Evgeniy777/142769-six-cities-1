@@ -1,8 +1,8 @@
 const placesFilter = {
-  POPULAR: `Popular`,
-  PRICE_ASC: `Price: low to high`,
-  PRICE_DESC: `Price: high to low`,
-  TOP_RATED_FIRST: `Top rated first`
+  POPULAR: `POPULAR`,
+  PRICE_ASC: `PRICE_ASC`,
+  PRICE_DESC: `PRICE_DESC`,
+  TOP_RATED_FIRST: `TOP_RATED_FIRST`
 };
 
 const user = `Oliver.conner@gmail.com`;

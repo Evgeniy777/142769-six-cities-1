@@ -7,12 +7,12 @@ import Tabs from '../tabs/tabs.jsx';
 import PlaceMap from '../place-map/place-map.jsx';
 import {connect} from 'react-redux';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
-
 import {getFilteredOffers} from "../../reducer/data/selectors";
 import {getCity} from "../../reducer/app/selectors";
 
 const OffersListWrapped = withActiveItem(OffersList);
 const TabsWrapped = withActiveItem(Tabs);
+const PlaceSortingWrapped = withActiveItem(PlaceSorting);
 
 const Main = (props) => {
   const {city, filteredOffers} = props;
@@ -42,7 +42,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{filteredOffers.length} places to stay in {city}</b>
-              <PlaceSorting />
+              <PlaceSortingWrapped />
               <OffersListWrapped />
             </section>
             <div className="cities__right-section">

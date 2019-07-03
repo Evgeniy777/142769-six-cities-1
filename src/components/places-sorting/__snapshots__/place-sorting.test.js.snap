@@ -15,7 +15,6 @@ exports[`PlaceSorting PlaceSorting correctly renders 1`] = `
     className="places__sorting-type"
     tabIndex="0"
   >
-    Popular
     <svg
       className="places__sorting-arrow"
       height="4"
@@ -27,32 +26,28 @@ exports[`PlaceSorting PlaceSorting correctly renders 1`] = `
     </svg>
   </span>
   <ul
-    className="places__options places__options--custom places__options--opened"
+    className="places__options places__options--custom"
   >
     <li
-      className="places__option "
-      tabIndex="0"
-    >
-      Popular
-    </li>
+      className="places__option places__option--active"
+      onClick={[Function]}
+      tabIndex={0}
+    />
     <li
       className="places__option "
-      tabIndex="0"
-    >
-      Price: low to high
-    </li>
+      onClick={[Function]}
+      tabIndex={1}
+    />
     <li
       className="places__option "
-      tabIndex="0"
-    >
-      Price: high to low
-    </li>
+      onClick={[Function]}
+      tabIndex={2}
+    />
     <li
       className="places__option "
-      tabIndex="0"
-    >
-      Top rated first
-    </li>
+      onClick={[Function]}
+      tabIndex={3}
+    />
   </ul>
 </form>
 `;

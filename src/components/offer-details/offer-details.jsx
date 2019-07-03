@@ -288,6 +288,11 @@ const OfferDetails = (props) => {
   );
 };
 
+OfferDetails.propTypes = {
+  filteredOffers: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     filteredOffers: getFilteredOffers(state)
@@ -300,8 +305,3 @@ export default connect(
     mapStateToProps,
     null
 )(OfferDetails);
-
-OfferDetails.propTypes = {
-  filteredOffers: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired
-};
